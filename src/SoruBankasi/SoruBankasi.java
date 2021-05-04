@@ -26,7 +26,7 @@ public class SoruBankasi extends JFrame {
 
     private JTextArea hoşgeldiniz;
     private JTable tablo;
-// ayberk temin
+// ayberk222222
 
     public SoruBankasi() {
         super("Soru Bankası");
