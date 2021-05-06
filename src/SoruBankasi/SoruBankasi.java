@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class SoruBankasi extends JFrame {
     private Container container;
@@ -26,7 +27,6 @@ public class SoruBankasi extends JFrame {
 
     private JTextArea hoşgeldiniz;
     private JTable tablo;
-// ayberk222222
 
     public SoruBankasi() {
         super("Soru Bankası");
@@ -52,35 +52,117 @@ public class SoruBankasi extends JFrame {
         menuBar.add(menuSoruEkle);
         menuSoruEkle.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-              //  yeniSoruMenusu();
+                //  yeniSoruMenusu();
             }
         });
         menuSoruSil = new JMenuItem("Soru Sil");
         menuBar.add(menuSoruSil);
         menuSoruSil.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-              //  SoruSil();
+                //  SoruSil();
             }
         });
         menulistele = new JMenuItem("Listele");
         menuBar.add(menulistele);
         menulistele.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-              //  yeniSoruListeleme();
+                //  yeniSoruListeleme();
             }
         });
         menuSoruAra = new JMenuItem("Soru Ara");
         menuBar.add(menuSoruAra);
         menuSoruAra.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               // yeniSoruAra();
+                yeniSoruAra();
+            }
+
+            private void yeniSoruAra() {
+                container = getContentPane();
+                container.removeAll();
+                yeniPanel = new JPanel(null);
+                yeniPanel.setSize(400, 490);
+                yeniPanel.setBounds(0, 0, 400, 490);
+                yeniPanel.setBackground(Color.white);
+                String[] secenekler = {"Ürün Numarasına Göre Ara", "Ürün İsmine Göre Ara", "Ürün Türüne Göre Ara", "Ürün Fiyatına Göre Ara", "Ürün Miktarına Göre Ara"};
+                final JComboBox aramaSecenekleri = new JComboBox(secenekler);
+                aramaSecenekleri.setSize(250, 25);
+                aramaSecenekleri.setBounds(10, 10, 250, 25);
+                yeniPanel.add(aramaSecenekleri);
+                JButton sec = new JButton("Seç");
+                sec.setSize(70, 25);
+                sec.setBounds(270, 10, 70, 25);
+                sec.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        switch (aramaSecenekleri.getSelectedIndex()) {
+                            case 0:
+                                icerikListeleme("Ürün numarasını giriniz: ", "urunNumarasi");
+                                break;
+                            case 1:
+                                icerikListeleme("Ürün ismini giriniz: ", "urunIsmi");
+                                break;
+                            case 2:
+                                icerikListeleme("Ürün türünü giriniz: ", "urunTuru");
+                                break;
+                            case 3:
+                                icerikListeleme("Ürün fiyatını giriniz: ", "urunFiyati");
+                                break;
+                            case 4:
+                                icerikListeleme("Ürün miktarını giriniz: ", "urunMiktari");
+                                break;
+                        }
+                    }
+                });
+                yeniPanel.add(sec);
+                container.add(yeniPanel);
+                invalidate();
+                repaint();
+            }
+
+            public void icerikListeleme(String mesaj, final String sutun) {
+
+                container = getContentPane();
+
+                container.removeAll();
+
+              /*  icerikArama(mesaj);
+
+
+                guncelleSec.addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent e) {
+                        try {
+                            listelemeYap("SELECT * FROM stokProje WHERE " + sutun + "= \"" + txtGuncelle.getText() + "\"");
+                        } catch (SQLException ex) {
+                            JOptionPane.showConfirmDialog(null, "Bağlantı Başarısız", "Mysql Bağlantısı", JOptionPane.PLAIN_MESSAGE);
+
+                        }
+                    }
+                }
+                );*/
+
+                yeniPanel = new JPanel(null);
+
+                yeniPanel.setSize(400, 490);
+
+                yeniPanel.setBounds(0, 0, 400, 490);
+
+                yeniPanel.setBackground(Color.white);
+
+                container.add(yeniPanel);
+
+                invalidate();
+
+                repaint();
+
+
             }
         });
     }
-        public static void main (String[]args){
-            SoruBankasi banka = new SoruBankasi();
-            banka.setVisible(true);
 
-        }
+    public static void main(String[] args) {
+        SoruBankasi banka = new SoruBankasi();
+        banka.setVisible(true);
+
     }
+}
 
