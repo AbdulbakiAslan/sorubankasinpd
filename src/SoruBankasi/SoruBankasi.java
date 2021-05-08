@@ -4,11 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 public class SoruBankasi extends JFrame {
     private Container container;
-    private JMenuBar menuBar;
+    private final JMenuBar menuBar;
     private JMenuItem menuSoruEkle;
     private JMenuItem menuSoruSil;
     private JMenuItem menulistele;
@@ -52,7 +51,30 @@ public class SoruBankasi extends JFrame {
         menuBar.add(menuSoruEkle);
         menuSoruEkle.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //  yeniSoruMenusu();
+                  yeniSoruMenusu();
+            }
+
+            private void yeniSoruMenusu() {
+                container = getContentPane();
+                container.removeAll();
+                yeniPanel = new JPanel(null);
+                yeniPanel.setSize(700, 500);
+                yeniPanel.setBounds(0, 0, 700, 500);
+                yeniPanel.setBackground(Color.white);
+                String[] secenekler = {"Çoktan Seçmeli Soru Ekle", "Doğru/Yanlış Soru Ekle", "Boşluk Doldurma Soru Ekle", "Klasik Soru Ekle"};
+                final JComboBox aramaSecenekleri = new JComboBox(secenekler);
+                aramaSecenekleri.setSize(250, 25);
+                aramaSecenekleri.setBounds(10, 10, 250, 25);
+                yeniPanel.add(aramaSecenekleri);
+                JButton sec = new JButton("Seç");
+                sec.setSize(70, 25);
+                sec.setBounds(270, 10, 70, 25);
+                yeniPanel.add(sec);
+                container.add(yeniPanel);
+                invalidate();
+                repaint();
+
+
             }
         });
         menuSoruSil = new JMenuItem("Soru Sil");
@@ -66,8 +88,9 @@ public class SoruBankasi extends JFrame {
         menuBar.add(menulistele);
         menulistele.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //  yeniSoruListeleme();
+               // yeniSoruListeleme();
             }
+
         });
         menuSoruAra = new JMenuItem("Soru Ara");
         menuBar.add(menuSoruAra);
@@ -80,8 +103,8 @@ public class SoruBankasi extends JFrame {
                 container = getContentPane();
                 container.removeAll();
                 yeniPanel = new JPanel(null);
-                yeniPanel.setSize(400, 490);
-                yeniPanel.setBounds(0, 0, 400, 490);
+                yeniPanel.setSize(700, 500);
+                yeniPanel.setBounds(0, 0, 700, 500);
                 yeniPanel.setBackground(Color.white);
                 String[] secenekler = {"Ürün Numarasına Göre Ara", "Ürün İsmine Göre Ara", "Ürün Türüne Göre Ara", "Ürün Fiyatına Göre Ara", "Ürün Miktarına Göre Ara"};
                 final JComboBox aramaSecenekleri = new JComboBox(secenekler);
@@ -124,27 +147,11 @@ public class SoruBankasi extends JFrame {
 
                 container.removeAll();
 
-              /*  icerikArama(mesaj);
-
-
-                guncelleSec.addActionListener(new ActionListener() {
-
-                    public void actionPerformed(ActionEvent e) {
-                        try {
-                            listelemeYap("SELECT * FROM stokProje WHERE " + sutun + "= \"" + txtGuncelle.getText() + "\"");
-                        } catch (SQLException ex) {
-                            JOptionPane.showConfirmDialog(null, "Bağlantı Başarısız", "Mysql Bağlantısı", JOptionPane.PLAIN_MESSAGE);
-
-                        }
-                    }
-                }
-                );*/
-
                 yeniPanel = new JPanel(null);
 
-                yeniPanel.setSize(400, 490);
+                yeniPanel.setSize(700, 500);
 
-                yeniPanel.setBounds(0, 0, 400, 490);
+                yeniPanel.setBounds(0, 0, 700, 500);
 
                 yeniPanel.setBackground(Color.white);
 
