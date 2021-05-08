@@ -51,7 +51,7 @@ public class SoruBankasi extends JFrame {
         menuBar.add(menuSoruEkle);
         menuSoruEkle.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                  yeniSoruMenusu();
+                yeniSoruMenusu();
             }
 
             private void yeniSoruMenusu() {
@@ -62,16 +62,55 @@ public class SoruBankasi extends JFrame {
                 yeniPanel.setBounds(0, 0, 700, 500);
                 yeniPanel.setBackground(Color.white);
                 String[] secenekler = {"Çoktan Seçmeli Soru Ekle", "Doğru/Yanlış Soru Ekle", "Boşluk Doldurma Soru Ekle", "Klasik Soru Ekle"};
-                final JComboBox aramaSecenekleri = new JComboBox(secenekler);
-                aramaSecenekleri.setSize(250, 25);
-                aramaSecenekleri.setBounds(10, 10, 250, 25);
-                yeniPanel.add(aramaSecenekleri);
+                final JComboBox eklemeSecenekleri = new JComboBox(secenekler);
+                eklemeSecenekleri.setSize(250, 25);
+                eklemeSecenekleri.setBounds(10, 10, 250, 25);
+                yeniPanel.add(eklemeSecenekleri);
                 JButton sec = new JButton("Seç");
                 sec.setSize(70, 25);
                 sec.setBounds(270, 10, 70, 25);
+                sec.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        switch (eklemeSecenekleri.getSelectedIndex()) {
+                            case 0:
+                                icerikEkleme("Ürün numarasını giriniz: ", "urunNumarasi");
+                                break;
+                            case 1:
+                                icerikEkleme("Ürün ismini giriniz: ", "urunIsmi");
+                                break;
+                            case 2:
+                                icerikEkleme("Ürün türünü giriniz: ", "urunTuru");
+                                break;
+                            case 3:
+                                icerikEkleme("Ürün fiyatını giriniz: ", "urunFiyati");
+                                break;
+                        }
+                    }
+                });
                 yeniPanel.add(sec);
                 container.add(yeniPanel);
                 invalidate();
+                repaint();
+            }
+
+            public void icerikEkleme(String mesaj, final String sutun) {
+
+                container = getContentPane();
+
+                container.removeAll();
+
+                yeniPanel = new JPanel(null);
+
+                yeniPanel.setSize(700, 500);
+
+                yeniPanel.setBounds(0, 0, 700, 500);
+
+                yeniPanel.setBackground(Color.white);
+
+                container.add(yeniPanel);
+
+                invalidate();
+
                 repaint();
 
 
@@ -88,7 +127,7 @@ public class SoruBankasi extends JFrame {
         menuBar.add(menulistele);
         menulistele.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               // yeniSoruListeleme();
+                // yeniSoruListeleme();
             }
 
         });
