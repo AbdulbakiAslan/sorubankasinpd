@@ -1,5 +1,7 @@
 package SoruBankasi;
 
+import kotlin.jvm.internal.SpreadBuilder;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -38,20 +40,37 @@ public class SoruBankasi extends JFrame {
         menuBar = new JMenuBar();
         this.setJMenuBar(menuBar);
         anaSayfa = new JMenuItem("AnaSayfa");
-
         menuBar.add(anaSayfa);
-
         anaSayfa.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //anasayfa();
+                anasayfa();
             }
+
+            private void anasayfa() {
+                container = getContentPane();
+                container.removeAll();
+                yeniPanel = new JPanel(null);
+                yeniPanel.setSize(700, 500);
+                yeniPanel.setBounds(0, 0, 700, 500);
+                yeniPanel.setBackground(Color.white);
+                JButton sinavGetir = new JButton("Sınav Getir");
+                sinavGetir.setSize(70, 25);
+                sinavGetir.setBounds(270, 10, 70, 25);
+                yeniPanel.add(sinavGetir);
+                container.add(yeniPanel);
+                invalidate();
+                repaint();
+            }
+
+
         });
 
         menuSoruEkle = new JMenuItem("Yeni Soru");
         menuBar.add(menuSoruEkle);
         menuSoruEkle.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                  yeniSoruMenusu();
+
+                yeniSoruMenusu();
             }
 
             private void yeniSoruMenusu() {
@@ -73,8 +92,6 @@ public class SoruBankasi extends JFrame {
                 container.add(yeniPanel);
                 invalidate();
                 repaint();
-
-
             }
         });
         menuSoruSil = new JMenuItem("Soru Sil");
@@ -88,7 +105,7 @@ public class SoruBankasi extends JFrame {
         menuBar.add(menulistele);
         menulistele.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               // yeniSoruListeleme();
+                // yeniSoruListeleme();
             }
 
         });
