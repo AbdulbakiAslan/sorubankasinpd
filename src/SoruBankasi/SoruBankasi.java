@@ -73,16 +73,35 @@ public class SoruBankasi extends JFrame {
                     public void actionPerformed(ActionEvent e) {
                         switch (eklemeSecenekleri.getSelectedIndex()) {
                             case 0:
-                                icerikEkleme("Ürün numarasını giriniz: ", "urunNumarasi");
+                                JFrame f;
+                                f = new JFrame("Label Example");
+                                JLabel l1, l2;
+                                l1 = new JLabel("First Label.");
+                                l1.setBounds(50, 50, 100, 30);
+                                l2 = new JLabel("Second Label.");
+                                l2.setBounds(50, 100, 100, 30);
+                                f.add(l1);
+                                f.add(l2);
+                                f.setSize(300, 300);
+                                f.setLayout(null);
+                                f.setVisible(true);
                                 break;
                             case 1:
-                                icerikEkleme("Ürün ismini giriniz: ", "urunIsmi");
+
                                 break;
                             case 2:
                                 icerikEkleme("Ürün türünü giriniz: ", "urunTuru");
                                 break;
                             case 3:
-                                icerikEkleme("Ürün fiyatını giriniz: ", "urunFiyati");
+                                JFrame a = new JFrame();
+                                setTitle("Klasik Soru Ekle");
+                                JTextArea area = new JTextArea();
+                                area.setBounds(200, 300, 200, 200);
+                                a.add(area);
+                                a.setSize(700, 500);
+                                a.setLayout(null);
+                                a.setVisible(true);
+                                setLocation(size.width / 2 - getWidth() / 2, size.height / 2 - getHeight() / 2);
                                 break;
                         }
                     }
